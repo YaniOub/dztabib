@@ -11,6 +11,7 @@ dj-rest-auth = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
 pillow = "*"
+requests = "*"
 
 [dev-packages]
 
