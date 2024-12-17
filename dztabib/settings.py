@@ -31,12 +31,14 @@ SECRET_KEY = 'django-insecure-6m6=rv_54tu#m*(-n@g-eho2t)+lw@=nr^hz*((+r^o5ixwr1a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dztabib.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #auth
+    'dj_rest_auth.registration',
     # next
     'rest_framework',
     'rest_framework.authtoken',
@@ -53,10 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #new apps
-    'Core',
-    'Core_custom',
+    'MedApp',
     'Payement',
-    'Rating'
+    'Rating',
+    'Core'
     
 ]
 
@@ -158,3 +160,12 @@ REST_FRAMEWORK = {
 
 SITE_ID = 1
 
+AUTH_USER_MODEL = 'Core.User'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = False
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
