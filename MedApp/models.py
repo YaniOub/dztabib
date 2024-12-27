@@ -13,6 +13,29 @@ GENDER_CHOICES = [
     (GENDER_UNKNOWN , 'Unknown')
 ]
 
+APPOINTMENT_TYPE_ONLINE = 'ONLINE'
+APPOINTMENT_TYPE_OFFLINE = 'OFFLINE'
+
+APPOINTMENT_TYPE_CHOICES = [
+    (APPOINTMENT_TYPE_ONLINE, 'Online'),
+    (APPOINTMENT_TYPE_OFFLINE, 'Offline')
+]
+
+
+APPOINTMENT_STATUS_PENDING = 'PENDING'
+APPOINTMENT_STATUS_CONFIRMED = 'CONFIRMED'
+APPOINTMENT_STATUS_COMPLETED = 'COMPLETED'
+APPOINTMENT_STATUS_CANCELLED = 'CANCELLED'
+APPOINTMENT_STATUS_DELAYED = 'DELAYED'
+
+APPOINTMENT_STATUS_CHOICES = [
+    (APPOINTMENT_STATUS_PENDING, 'Pending'),
+    (APPOINTMENT_STATUS_CONFIRMED, 'Confirmed'),
+    (APPOINTMENT_STATUS_COMPLETED, 'Completed'),
+    (APPOINTMENT_STATUS_CANCELLED, 'Cancelled'),
+    (APPOINTMENT_STATUS_DELAYED, 'Delayed')
+]
+
 # Create your models here.
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -43,3 +66,20 @@ class Doctor(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=GENDER_UNKNOWN)
     date_joined = models.DateTimeField(auto_now_add=True)
     diploma_code = models.CharField(max_length=50, null=True, blank=True)
+
+class Appointment(models.Model):
+    appointment_id = models.AutoField(primary_key=True)
+    date = models.DateField()
+    time = models.TimeField()
+    type = models.CharField(max_length=7,
+                            choices=APPOINTMENT_TYPE_CHOICES,
+                            default=APPOINTMENT_TYPE_OFFLINE)
+                            
+    status = models.CharField(max_length=10,
+                              choices=APPOINTMENT_STATUS_CHOICES,
+                              default=APPOINTMENT_STATUS_PENDING)
+    
+    payment_status = models.CharField(max_length=255)
+    priority = models.IntegerField(null=True, blank=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
