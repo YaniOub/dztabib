@@ -45,6 +45,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = PageNumberPagination
 
     @action(detail=False, methods=['GET', 'POST'])
     def me(self, request):
@@ -62,6 +63,8 @@ class PatientViewSet(viewsets.ModelViewSet):
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    pagination_class = PageNumberPagination
+    
     def get_permissions(self):
         if self.action == 'create':
             self.permission_classes = [IsAuthenticated, permissions.IsPatient]
