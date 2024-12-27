@@ -65,7 +65,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action == 'create':
             self.permission_classes = [IsAuthenticated, permissions.IsPatient]
-        elif self.action in ['update', 'destroy']:
+        elif self.action in ['destroy']:
             self.permission_classes = [IsAuthenticated, permissions.IsDoctor]
         else:
             self.permission_classes = [IsAuthenticated]
