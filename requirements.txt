@@ -30,6 +30,6 @@ social-auth-core==4.5.4
 tzdata==2024.2
 channels_redis==4.2.1
 msgpack==1.0.5
-redis==4.5.1
+redis>=4.6
 django-cors-headers==4.6.0
 websockets==14.1
