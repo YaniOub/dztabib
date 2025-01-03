@@ -28,3 +28,8 @@ requests-oauthlib==2.0.0
 social-auth-app-django==5.4.2
 social-auth-core==4.5.4
 tzdata==2024.2
+channels_redis==4.2.1
+msgpack==1.0.5
+redis==4.5.1
+django-cors-headers==4.6.0
+websockets==14.1
