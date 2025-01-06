@@ -1,10 +1,13 @@
-from django.urls import path
-from . import views
-from rest_framework_nested import routers
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import DoctorViewSet, PatientViewSet
 
-router = routers.DefaultRouter()
-router.register('doctor', views.DoctorViewSet)
-router.register('patient', views.PatientViewSet)
+# Create a router and register the viewsets
+router = DefaultRouter()
+router.register(r'doctor', DoctorViewSet, basename='doctor')
+router.register(r'patient', PatientViewSet, basename='patient')
 
-
-urlpatterns = router.urls 
+# Include the router's URLs in the urlpatterns
+urlpatterns = [
+    path('', include(router.urls)),  # Add all routes from the router
+]
