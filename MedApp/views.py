@@ -39,7 +39,32 @@ class DoctorViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
-        
+    
+    @action(detail=False, methods=['GET'], url_path='search')
+    def search(self, request):
+        speciality = request.query_params.get('speciality', None)
+        location = request.query_params.get('location', None)
+        availability = request.query_params.get('availability', None)
+        insurance = request.query_params.get('insurance', None)
+
+        doctors = Doctor.objects.all()
+
+        if speciality:
+            doctors = doctors.filter(speciality__icontains=speciality)
+        if location:
+            doctors = doctors.filter(location__icontains=location)
+        if availability is not None:
+            doctors = doctors.filter(availability=availability.lower() == 'true')
+        if insurance:
+            doctors = doctors.filter(insurance_accepted__icontains=insurance)
+
+        page = self.paginate_queryset(doctors)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(doctors, many=True)
+        return Response(serializer.data)
 
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
