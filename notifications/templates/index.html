@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #log {
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #f9f9f9;
+      margin-top: 20px;
+    }
+    #controls {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>WebSocket Example</h1>
+  <p>This page demonstrates a simple WebSocket connection.</p>
+
+  <div id="log">
+    <p><strong>Log:</strong></p>
+  </div>
+
+  <div id="controls">
+    <button id="sendMessage">Send Message</button>
+    <button id="closeConnection">Close Connection</button>
+  </div>
+
+  <script>
+    var socket;
+    var logElement = document.getElementById('log');
+
+    function logMessage(message) {
+      var p = document.createElement('p');
+      p.textContent = message;
+      logElement.appendChild(p);
+      logElement.scrollTop = logElement.scrollHeight; // Auto-scroll
+    }
+
+    window.onload = function () {
+      var loc = window.location;
+      var wsStart = 'ws://';
+      if (loc.protocol === 'https:') {
+        wsStart = 'wss://';
+      }
+      var endpoint = wsStart + loc.host + '/ws/notifications/';
+
+      socket = new WebSocket(endpoint);
+
+      socket.onopen = function (e) {
+        console.log("Connection opened:", e);
+        logMessage("Connection opened.");
+      };
+
+      socket.onerror = function (e) {
+        console.log("Error:", e);
+        logMessage("Error occurred: " + e.message);
+      };
+
+      socket.onclose = function (e) {
+        console.log("Connection closed:", e);
+        logMessage("Connection closed.");
+      };
+
+      document.getElementById('sendMessage').addEventListener('click', function () {
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send("Hello, server!");
+          logMessage("Message sent: Hello, server!");
+        } else {
+          logMessage("WebSocket is not open.");
+        }
+      });
+
+      document.getElementById('closeConnection').addEventListener('click', function () {
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.close();
+          logMessage("Closing connection...");
+        } else {
+          logMessage("WebSocket is already closed.");
+        }
+      });
+    };
+  </script>
+</body>
+</html>

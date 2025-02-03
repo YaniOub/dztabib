@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'MedApp',
     'Payement',
     'Rating',
-    'Core'
+    'Core',
+    'notifications',
     
 ]
 

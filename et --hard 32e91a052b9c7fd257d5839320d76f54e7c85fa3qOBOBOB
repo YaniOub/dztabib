@@ -1,0 +1,103 @@
+[33mcommit 482f6366e848a4d9749c6b16afd509191f753657[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Mon Feb 3 19:50:00 2025 +0100
+
+    :::::::::::Revert "Allowing corers for dev phase"
+    
+    This reverts commit 32e91a052b9c7fd257d5839320d76f54e7c85fa3.
+
+[33mcommit 32e91a052b9c7fd257d5839320d76f54e7c85fa3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Fri Jan 3 11:17:52 2025 +0100
+
+    Allowing cors header for all users for dev phase
+
+[33mcommit 1f48f0de2826a89646d54dcc962fc455f8961f1f[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Fri Jan 3 11:15:43 2025 +0100
+
+    Allowing cors header for all users for dev phase
+
+[33mcommit 7312710f33176923c3a0d6a2bace99fb8b228511[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 31 23:30:23 2024 +0100
+
+    Set ALLOWED_HOSTS to wildcard for development
+
+[33mcommit 2a3195437a01250a857a7b3813790aa93cf6d9bb[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Fri Dec 27 23:05:22 2024 +0100
+
+    implimenting pagination
+
+[33mcommit 19bd979a1deb9d448221cb72fae2725eac0d7acb[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Fri Dec 27 23:02:07 2024 +0100
+
+    appointement system added (without google meet)
+
+[33mcommit 935e4cbf77f2480183555cafa103206f126db343[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Fri Dec 27 22:42:55 2024 +0100
+
+    appointement system added (without google meet)
+
+[33mcommit de5f13599a3064da63195de17d9b5dd644d7b835[m[33m ([m[1;31morigin/haroun[m[33m)[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Thu Dec 26 12:03:24 2024 +0100
+
+    returning tookens after register
+
+[33mcommit 6e278339ae4cca81ee5bdd51a4e34735745d9af7[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Wed Dec 25 20:16:43 2024 +0100
+
+    temporary
+
+[33mcommit e53e7b2eaff5dfca69f63e1ce2b6c4354aa274eb[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Wed Dec 25 15:24:53 2024 +0100
+
+    add requirements
+
+[33mcommit 3d4961d50ec06e1338c8f17c8633d330ee94fd26[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Wed Dec 25 15:17:57 2024 +0100
+
+    Add Doctor and Patient serializers and views, update models and URLs
+
+[33mcommit 548984bd352986752a7e2f21cdd80ff7d0701297[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 17 18:17:57 2024 +0100
+
+    Override with local changes
+
+[33mcommit 8a5cacb7f2e8a26cb7217f1e8080ad2077f860fb[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 17 18:15:18 2024 +0100
+
+    Ensure MedApp is included
+
+[33mcommit 607c3aac490cd5ccc487902591016203cab226c1[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 17 18:10:29 2024 +0100
+
+    Add Render domain to ALLOWED_HOSTS
+
+[33mcommit f2a426e9cb1afdc0bbf254f35a68f4491f42ed6b[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 17 17:57:48 2024 +0100
+
+    Add requirements.txt
+
+[33mcommit 71a085a92971f79d40464c4e4d9f469e6a64d5e5[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 17 17:54:47 2024 +0100
+
+    Add requirements.txt
+
+[33mcommit b723f4e6d9cd550f8f4bb67738d6006d3e54eff7[m
+Author: YaniOub <y_oubellil@estin.dz>
+Date:   Tue Dec 17 15:18:29 2024 +0100
+
+    Add project files
