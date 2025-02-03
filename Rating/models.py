@@ -1,5 +1,5 @@
 from django.db import models
-from MedApp.models import Doctor , Patient, Appointment
+from MedApp.models import Doctor , Patient
 # Create your models here.
 ### 6️⃣ Rating
 class Rating(models.Model):

@@ -39,7 +39,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     #auth
-     'rest_framework.authtoken',
+    'rest_framework.authtoken',
     'djoser',
     # next
     'rest_framework',
@@ -152,7 +152,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
-    
+#filter backend for filtering data in api views
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
