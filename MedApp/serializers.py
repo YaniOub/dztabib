@@ -7,7 +7,7 @@ class DoctorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Doctor
-        fields = ['user_id','doctor_id', 'first_name', 'last_name', 'date_of_birth', 'speciality', 'diploma_code', 'is_doctor']
+        fields = ['user_id','doctor_id', 'first_name', 'last_name', 'date_of_birth', 'speciality','location', 'diploma_code', 'is_doctor']
         extra_kwargs = {'user_id': {'read_only': True},
                         'is_doctor': {'read_only': True},
                         'doctor_id': {'read_only': True}}
