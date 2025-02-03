@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework import viewsets
 from .models import Doctor, Patient, Appointment
@@ -10,8 +9,9 @@ from rest_framework.pagination  import PageNumberPagination
 from django.shortcuts import get_object_or_404
 from datetime import datetime, timedelta
 from . import permissions
-from django.db import connection
-
+from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import DoctorFilter
 
 def is_time_overlapping(date, time):
     time_start = (datetime.combine(date, time)).time()
@@ -113,6 +113,12 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         serializer = AppointmentSerializer(queryset, many=True)
         return Response(serializer.data)
 
+
+class DoctorListView(generics.ListAPIView):
+    queryset = Doctor.objects.all()  # Fetch all doctors
+    serializer_class = DoctorSerializer
+    filter_backends = (DjangoFilterBackend,)  # Django filter backend to handle filtering
+    filterset_class = DoctorFilter  # Link the filter set class to this view
 
 # class AppointmentViewSet(viewsets.ViewSet):
 

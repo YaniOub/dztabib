@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+# from Rating.models import Rating , RatingRelation
 User = get_user_model()
 
 GENDER_MALE = 'M'
@@ -64,7 +64,7 @@ class Speciality(models.Model):
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  
     doctor_id = models.BigAutoField(primary_key=True)
-    speciality = models.ForeignKey(Speciality, on_delete=models.CASCADE)
+    speciality = models.ForeignKey('Speciality', on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15, null=True, blank=True)
@@ -74,6 +74,8 @@ class Doctor(models.Model):
     location = models.CharField(max_length=255, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O')
     diploma_code = models.CharField(max_length=50, null=True, blank=True)
+    date_of_birth = models.DateField()  # Ensure this field exists!
+
 
     def __str__(self):
         return f"Dr. {self.first_name} {self.last_name} - {self.speciality.name}"
@@ -96,47 +98,30 @@ class Appointment(models.Model):
     status = models.CharField(max_length=10, choices=APPOINTMENT_STATUS_CHOICES, default='pending')
     payment_status = models.CharField(max_length=255)
     priority = models.IntegerField(null=True, blank=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Appointment {self.appointment_id} - {self.patient} with {self.doctor}"
 
-### 6️⃣ Rating
-class Rating(models.Model):
-    rating_id = models.BigAutoField(primary_key=True)
-    note = models.IntegerField()  # Note de 1 à 5
-    titre = models.CharField(max_length=255)
-    commentaire = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.titre} - {self.note}/5"
 
 ### 7️⃣ Patient Insurance (relation many-to-many)
 class PatientInsurance(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE)
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    insurance = models.ForeignKey('Insurance', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.patient} - {self.insurance}"
 
 ### 8️⃣ Doctor Insurance (relation many-to-many)
 class DoctorInsurance(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE)
+    doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE)
+    insurance = models.ForeignKey('Insurance', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.doctor} - {self.insurance}"
 
-### 9️⃣ Rating Relation (relation entre patient, docteur et rating)
-class RatingRelation(models.Model):
-    rating = models.ForeignKey(Rating, on_delete=models.CASCADE)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"Rating {self.rating.id} by {self.patient} for {self.doctor}"
 
 ### 🔟 Language
 class Language(models.Model):
@@ -148,8 +133,8 @@ class Language(models.Model):
 
 ### 1️⃣1️⃣ Doctor Languages (relation many-to-many)
 class DoctorLanguage(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE)
+    language = models.ForeignKey('Language', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.doctor} speaks {self.language}"

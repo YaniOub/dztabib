@@ -1,7 +1,7 @@
 from django.urls import path,include
 from . import views
 from rest_framework_nested import routers
-
+from .views import DoctorListView
 router = routers.DefaultRouter()
 router.register('doctor', views.DoctorViewSet)
 router.register('patient', views.PatientViewSet)
@@ -14,4 +14,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('', include(doctors_router.urls)),
     path('appointment/create/<int:doctor_pk>/', views.AppointmentViewSet.as_view({'post': 'create'}), name='appointment-create'),
+    path('doctors/', DoctorListView.as_view(), name='doctor-list'),  # Endpoint for listing doctors
 ]
