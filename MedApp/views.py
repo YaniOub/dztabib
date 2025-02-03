@@ -1,8 +1,13 @@
+
+<<<<<<< HEAD
 from rest_framework.decorators import action
 from rest_framework import viewsets
 from .models import Doctor, Patient, Appointment
 from .serializers import DoctorSerializer, PatientSerializer, AppointmentSerializer
 from rest_framework import viewsets
+=======
+from rest_framework import viewsets
+>>>>>>> d19a22425fa049f8d31040f4a022846ab5195744
 from rest_framework.decorators import action
 from .models import Doctor, Patient
 from .serializers import DoctorSerializer, PatientSerializer
@@ -82,6 +87,7 @@ class PatientViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data)
 
+<<<<<<< HEAD
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
@@ -182,3 +188,5 @@ class DoctorListView(generics.ListAPIView):
 #             cursor.execute("DELETE FROM MedApp_appointment WHERE id = %s", [pk])
 
 #         return Response(status=status.HTTP_204_NO_CONTENT)
+=======
+>>>>>>> d19a22425fa049f8d31040f4a022846ab5195744
