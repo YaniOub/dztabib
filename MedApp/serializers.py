@@ -10,7 +10,8 @@ class DoctorSerializer(serializers.ModelSerializer):
         fields = ['user_id','doctor_id', 'first_name', 'last_name', 'date_of_birth', 'speciality','location', 'diploma_code', 'is_doctor']
         extra_kwargs = {'user_id': {'read_only': True},
                         'is_doctor': {'read_only': True},
-                        'doctor_id': {'read_only': True}}
+                        'doctor_id': {'read_only': True},
+                        'location': {'required': False},}
 
     def get_is_doctor(self, obj):
         return obj.user.is_doctor
