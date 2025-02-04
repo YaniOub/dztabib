@@ -162,7 +162,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'CoerceDecimalField': False,
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 100,
 }
 
 SITE_ID = 1
@@ -191,3 +191,4 @@ DJOSER = {
 
 # Allow all origins for development
 CORS_ALLOW_ALL_ORIGINS = True
+
